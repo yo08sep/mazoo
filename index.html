@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page Sederhana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #2980b9, #6dd5fa);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: white;
+            padding: 30px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 30px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 30px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 30px;
+            background: #2980b9;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background: #1f6391;
+        }
+
+        #message {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Silahkan Login</h2>
+    <form onsubmit="return login()">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <p id="message"></p>
+</div>
+
+<script>
+    // DAFTAR USER (TINGGAL TAMBAH DI SINI)
+    const users = [
+        { username: "admin", password: "12345" },
+        { username: "user1", password: "123" },
+        { username: "user2", password: "4321" },
+        { username: "jokowi", password: "owi"},
+        { username: "mega", password: "wati"},
+        { username: "indo", password: "nesia"},
+    ];
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const message = document.getElementById("message");
+
+        let isLogin = false;
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].username === username && users[i].password === password) {
+                isLogin = true;
+                break;
+            }
+        }
+
+        if (isLogin) {
+            message.style.color = "green";
+            message.textContent = "Login berhasil!";
+            alert("Selamat datang, " + username);
+        } else {
+            message.style.color = "red";
+            message.textContent = "Username atau password salah!";
+        }
+
+        return false; // cegah reload halaman
+    }
+</script>
+
+</body>
+</html>
